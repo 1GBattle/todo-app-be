@@ -1,10 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-class Tododb : DbContext
+class Tododb(DbContextOptions<Tododb> options) : DbContext(options)
 {
-  public Tododb(DbContextOptions<Tododb> options) : base(options)
-  {
-  }
-
-  public DbSet<TodoItem> TodoItems { get; set; }
+    public DbSet<TodoItem> TodoItems { get; set; }
 }

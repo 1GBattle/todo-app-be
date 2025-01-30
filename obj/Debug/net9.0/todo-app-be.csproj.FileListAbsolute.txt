@@ -47,3 +47,4 @@ C:\Users\garyb\Documents\web-dev\todo-app\todo-app-be\bin\Debug\net9.0\NSwag.Gen
 C:\Users\garyb\Documents\web-dev\todo-app\todo-app-be\bin\Debug\net9.0\NSwag.Generation.AspNetCore.dll
 C:\Users\garyb\Documents\web-dev\todo-app\todo-app-be\bin\Debug\net9.0\YamlDotNet.dll
 C:\Users\garyb\Documents\web-dev\todo-app\todo-app-be\obj\Debug\net9.0\todo-app.C9D9595B.Up2Date
+c:\Users\garyb\Documents\web-dev\todo-app\todo-app-be\obj\Debug\net9.0\todo-app-be.sourcelink.json
