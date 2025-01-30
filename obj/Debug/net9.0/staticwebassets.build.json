@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "AfqzyaU4QHW0ZqMWP928M4G2tiVt+7ea6wT3lqUj33M=",
+  "Source": "todo-app-be",
+  "BasePath": "_content/todo-app-be",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
