@@ -7,7 +7,7 @@ public static class Todo
         var todos = routes.MapGroup("/api/todos");
 
         // Returns all TodoItems
-        todos.MapGet("/todoItems", async (Tododb db) => await db.TodoItems.ToListAsync());
+        todos.MapGet("/todoItems", async (Tododb db) => await db.TodoItems.ToListAsync()).RequireAuthorization();
 
         // Returns a specific TodoItem
         todos.MapGet(
@@ -16,7 +16,7 @@ public static class Todo
                 await db.TodoItems.FindAsync(id) is TodoItem todoItem
                     ? Results.Ok(todoItem)
                     : Results.NotFound()
-        );
+        ).RequireAuthorization();
 
         // Creates a new TodoItem
         todos.MapPost(
@@ -27,7 +27,7 @@ public static class Todo
                 await db.SaveChangesAsync();
                 return Results.Created($"/todoItems/{todoItem.Id}", todoItem);
             }
-        );
+        ).RequireAuthorization();
 
         // Updates a TodoItem
         todos.MapPut(
@@ -46,7 +46,7 @@ public static class Todo
                 await db.SaveChangesAsync();
                 return Results.Ok(todo);
             }
-        );
+        ).RequireAuthorization();
 
         // Deletes a TodoItem
         todos.MapDelete(
@@ -62,6 +62,6 @@ public static class Todo
                 await db.SaveChangesAsync();
                 return Results.NoContent();
             }
-        );
+        ).RequireAuthorization();
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\todo-app-be.csproj": {}
+    "C:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\todo-app-be.csproj": {}
   },
   "projects": {
-    "c:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\todo-app-be.csproj": {
+    "C:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\todo-app-be.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\todo-app-be.csproj",
+        "projectUniqueName": "C:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\todo-app-be.csproj",
         "projectName": "todo-app-be",
-        "projectPath": "c:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\todo-app-be.csproj",
+        "projectPath": "C:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\todo-app-be.csproj",
         "packagesPath": "C:\\Users\\garyb\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\obj\\",
+        "outputPath": "C:\\Users\\garyb\\Documents\\web-dev\\todo-app\\todo-app-be\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\garyb\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -44,6 +44,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.1, )"
