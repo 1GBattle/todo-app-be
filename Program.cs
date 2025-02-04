@@ -7,21 +7,47 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Tododb>(options => options.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(opt =>
+builder
+    .Services.AddAuthentication(options =>
     {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(static opt =>
+    {
+        opt.Authority = "http://localhost:5112";
+        opt.Audience = "http://localhost:5112";
+        opt.RequireHttpsMetadata = false;
         opt.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = "localhost:5112",
-            ValidAudience = "localhost:5112",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_super_secret_key"))
+            ValidateIssuerSigningKey = false,
+            ValidIssuer = "http://localhost:5112",
+            ValidAudience = "http://localhost:5112",
+
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes("123456789101112131415161718192021222324252627")
+            ),
+        };
+
+        opt.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                context.Request.Cookies.TryGetValue("X-Access-Token", out var accessToken);
+                if (!string.IsNullOrEmpty(accessToken))
+                    context.Token = accessToken;
+
+                opt.RequireHttpsMetadata = false;
+
+                return Task.CompletedTask;
+            },
         };
     });
 builder.Services.AddAuthorization();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(config =>
 {

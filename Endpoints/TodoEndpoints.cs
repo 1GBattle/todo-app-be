@@ -1,13 +1,16 @@
+using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 
 public static class Todo
 {
-    public static void RegisterTodoEndpoints(this IEndpointRouteBuilder routes)
+    public static void RegisterTodoEndpoints(this IEndpointRouteBuilder routes, IHttpContextAccessor httpContextAccessor)
     {
+        var userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        Console.WriteLine(userId);
         var todos = routes.MapGroup("/api/todos");
 
         // Returns all TodoItems
-        todos.MapGet("/todoItems", async (Tododb db) => await db.TodoItems.ToListAsync()).RequireAuthorization();
+        todos.MapGet("/todoItems", async (Tododb db) => await db.TodoItems.Where(todo => todo.UserId == userId).ToListAsync()).RequireAuthorization();
 
         // Returns a specific TodoItem
         todos.MapGet(
